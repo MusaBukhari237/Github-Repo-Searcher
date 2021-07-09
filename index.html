@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github User repos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h2 class="pagetitle">Github User Repositories Searcher</h2>
+        <div class="chip" onclick="">
+            <img src="https://avatars.githubusercontent.com/u/51749565?v=4" alt="Person">
+            MusaBukhari237
+        </div>
+    </header>
+    <div class="Form-Search">
+        <input type="text" id="search" placeholder="Search..." autocomplete="off"
+            onchange="GetRepositories(this.value)">
+        <span class="repolength">0 Results</span>
+    </div>
+
+
+
+    <div class="list">
+
+        <div class="tooltip">
+            <div class="list-view list-folder">
+                <img class="list-img" src="https://avatars.githubusercontent.com/u/51749565?v=4">
+                <a href="index.php?v=Bootcamp-2020-Practice">
+                    <h2 class="list-title">Bootcamp-2020-Practice ( Pancloud BlockChain , AI , IOT)</h2>
+                </a>
+            </div>
+
+            <span class="tooltiptext">Tooltip text</span>
+        </div>
+
+
+
+
+    </div>
+
+
+    
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
