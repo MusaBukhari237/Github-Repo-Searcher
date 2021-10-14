@@ -18,7 +18,15 @@
             MusaBukhari237
         </div>
     </header>
+
     <div class="Form-Search">
+        <select class="opselector" name="cars" id="cars">
+          <optgroup label="Modes">
+            <option value="volvo">Users</option>
+            <option value="volvo">Repos</option>
+            <option value="volvo">Search</option>
+          </optgroup>
+        </select>
         <input type="text" id="search" placeholder="Search..." autocomplete="off"
             onchange="GetRepositories(this.value)">
         <span class="repolength">0 Results</span>
@@ -46,7 +54,6 @@
 
 
     
-
 
     <script src="app.js"></script>
 </body>

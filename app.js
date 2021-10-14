@@ -15,13 +15,13 @@ function Capitalize(string) {
 }
 
 
-function Notfound(){
+function Notfound(string){
     var list = document.querySelector(".list")
     list.innerHTML = `
     <div class="list-view list-folder" >
     <img class="list-img" src="404.png">
     <a href="#">
-        <h2 class="list-title">${Capitalize("Data Not found")}</h2>
+        <h2 class="list-title">${Capitalize(string)}</h2>
     </a>
 </div>
     `
@@ -42,36 +42,86 @@ function RepoProfile(user) {
 
 }
 
-function PasteRepo() {
-  console.log(repolist);
+function PasteRepo(datalist,type) {
+  console.log(list);
+  
   var list = document.querySelector(".list");
   list.innerHTML = '';
-  for (let index = 0; index < repolist.length; index++) {
-    let element = repolist[index];
-    list.innerHTML += `
-      <div class="tooltip">     
-
-      <div class="list-view list-folder" >
-      <img class="list-img" src="${element.owner.avatar_url}">
-      <a href="${element.html_url}">
-          <h2 class="list-title">${Capitalize(element.name)}</h2>
-      </a>
-  </div>
-
-  <span class="tooltiptext">${element.name}</span>
-  </div>
-      `
+  if (type == 'users') {
+    datalist = datalist.items;
+    
+    for (let index = 0; index < datalist.length; index++) {
+      let element = datalist[index];
+      list.innerHTML += `
+        <div class="tooltip">     
+  
+        <div class="list-view list-folder" >
+        <img class="list-img imgborder" src="${element.avatar_url}">
+        <a href="${element.url}">
+            <h2 class="list-title">${Capitalize(element.login)}</h2>
+        </a>
+    </div>
+  
+    <span class="tooltiptext">${element.login}</span>
+    </div>
+        `
+    }
+  
+    RepoLength();
+    RepoProfile(datalist[0].login);
+  }else{
+    for (let index = 0; index < datalist.length; index++) {
+      let element = datalist[index];
+      list.innerHTML += `
+        <div class="tooltip">     
+  
+        <div class="list-view list-folder" >
+        <img class="list-img imgborder" src="${element.owner.avatar_url}">
+        <a href="${element.html_url}">
+            <h2 class="list-title">${Capitalize(element.name)}</h2>
+        </a>
+    </div>
+  
+    <span class="tooltiptext">${element.name}</span>
+    </div>
+        `
+    }
+  
+    RepoLength();
+    RepoProfile(datalist[0].owner.login);
   }
 
-  RepoLength();
-  RepoProfile(repolist[0].owner.login);
+
 
 }
 
 
 
-function GetRepositories(user) {
-  var url = 'https://api.github.com/users/' + user + '/repos';
+function CheckData(){
+  if (Array.isArray(repolist) || Array.isArray(repolist.items)) {
+    if (repolist.message == "Not Found") {
+      Notfound("Data Not found")
+    }else{
+      // Other Functions Here.....
+      if (Array.isArray(repolist.items)) {
+        // Users
+      }else{
+        // Repos
+        
+      }
+      console.log(repolist)
+    }
+    
+  }else{
+    console.log("Api Not working Correctly")
+    Notfound("Api Does Not Working Correctly Plas")
+  }
+
+}
+
+
+function GetRepositories(api,param1,user) {
+  var url = api + user + param1;
   fetch(url)
     .then((response) => {
       return response.json();
@@ -79,14 +129,14 @@ function GetRepositories(user) {
     .then((data) => {
      // console.log(data);
       repolist = data;
+        // repolist = "data";
+      CheckData();
+      
 
     });
 
-    if (repolist.length < 1 ) {
-      Notfound();        
-    }else{
-      PasteRepo();
-    }
+    
+
 
 
 }
@@ -95,11 +145,7 @@ function GetRepositories(user) {
 
 
 
-// var getrepo = new Promise ((resolve,reject) => {
-//     GetRepositories("aamirpinger").length > 0 ? resolve() : reject();
-// })
 
+GetRepositories("https://api.github.com/search/users?q=","","musa");
 
-// getrepo.then(PasteRepo()).catch(console.log("Error"))
-
-GetRepositories("aamirpinger");
+// repolist = ["musa","tooba"];

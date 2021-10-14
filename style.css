@@ -106,6 +106,7 @@ input {
     padding: 6px 6px;
     padding: 4px 5px 4px 10px;
     background-color: #3b4448;
+    margin-left: 112px;
 }
 
 .list {
@@ -158,9 +159,14 @@ a {
     height: 48px;
     margin-left: 20px;
     margin-top: 4px;
+
+}
+
+.imgborder{
     border: 2px solid #dfedf4;
     border-radius: 50%;
 }
+
 
 
 
@@ -202,3 +208,21 @@ header{
     justify-content: space-between;
 
 }
+
+
+.opselector{
+    background: #4b4c4c;
+    border: 3px solid #1c1e1f;
+    border-radius: 7px;
+    padding: 6px 8px;
+    /* text-align: center; */
+    /* justify-content: center; */
+    align-self: center;
+    position: fixed;
+    left: 8px;
+    font-size: 14px;
+    color: white;
+}
+
+
+
